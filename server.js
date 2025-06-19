@@ -7,9 +7,9 @@ const PORT = 8080; // Gateway will run on port 8080
  
 // Route to proxy requests to the authentication service (port 3000)
 app.use(
-  "/api/v2/user",
+  "/api/v2/users",
   createProxyMiddleware({
-    target: `http://localhost:3000/api/v2/user`, // Target microservice URL
+    target: `http://localhost:3000/api/v2/users`, // Target microservice URL
     changeOrigin: true, // Ensures the correct origin is set
     // router: (req) => {
     //   return `http://localhost:3000/api/v1/auth`; // This forwards the complete URL path
