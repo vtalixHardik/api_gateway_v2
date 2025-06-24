@@ -20,7 +20,7 @@ app.use(
 app.use(
   "/api/v2/doctors",
   createProxyMiddleware({
-    target: `http://localhost:3002/api/v2/doctors`, // Target microservice URL
+    target: `http://localhost:3001/api/v2/doctors`, // Target microservice URL
     changeOrigin: true, // Ensures the correct origin is set
     // router: (req) => {
     //   return `http://localhost:3000/api/v1/auth`; // This forwards the complete URL path
