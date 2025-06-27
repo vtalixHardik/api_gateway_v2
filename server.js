@@ -4,12 +4,13 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
  
 const app = express();
 const PORT = 8080; // Gateway will run on port 8080
+const target = "192.168.1.37"; // Target server will run on port 3000
  
 // Route to proxy requests to the authentication service (port 3000)
 app.use(
   "/api/v2/users",
   createProxyMiddleware({
-    target: `http://localhost:3000/api/v2/users`, // Target microservice URL
+    target: `http://${target}:3000/api/v2/users`, // Target microservice URL
     changeOrigin: true, // Ensures the correct origin is set
     // router: (req) => {
     //   return `http://localhost:3000/api/v1/auth`; // This forwards the complete URL path
@@ -20,7 +21,7 @@ app.use(
 app.use(
   "/api/v2/doctors",
   createProxyMiddleware({
-    target: `http://localhost:3001/api/v2/doctors`, // Target microservice URL
+    target: `http://${target}:3001/api/v2/doctors`, // Target microservice URL
     changeOrigin: true, // Ensures the correct origin is set
     // router: (req) => {
     //   return `http://localhost:3000/api/v1/auth`; // This forwards the complete URL path
@@ -31,7 +32,7 @@ app.use(
 app.use(
   "/api/v1/slots",
   createProxyMiddleware({
-    target: `http://localhost:3008/api/v1/slots`, // Target microservice URL
+    target: `http://${target}:3008/api/v1/slots`, // Target microservice URL
     changeOrigin: true, // Ensures the correct origin is set
     // router: (req) => {
     //   return `http://localhost:3000/api/v1/auth`; // This forwards the complete URL path
@@ -42,7 +43,7 @@ app.use(
 app.use(
   "/api/v1/patients",
   createProxyMiddleware({
-    target: `http://localhost:3001/api/v1/patients`, // Target microservice URL
+    target: `http://${target}:3001/api/v1/patients`, // Target microservice URL
     changeOrigin: true, // Ensures the correct origin is set
     // router: (req) => {
     //   return `http://localhost:3000/api/v1/auth`; // This forwards the complete URL path
@@ -53,7 +54,7 @@ app.use(
 app.use(
   "/api/v1/questionnaire",
   createProxyMiddleware({
-    target: `http://localhost:3003/api/v1/questionnaire`, // Target microservice URL
+    target: `http://${target}:3003/api/v1/questionnaire`, // Target microservice URL
     changeOrigin: true, // Ensures the correct origin is set
     // router: (req) => {
     //   return `http://localhost:3000/api/v1/auth`; // This forwards the complete URL path
@@ -64,7 +65,7 @@ app.use(
 app.use(
   "/api/v1/coupons",
   createProxyMiddleware({
-    target: `http://localhost:3013/api/v1/coupons`, // Target microservice URL
+    target: `http://${target}:3013/api/v1/coupons`, // Target microservice URL
     changeOrigin: true, // Ensures the correct origin is set
     // router: (req) => {
     //   return `http://localhost:3000/api/v1/auth`; // This forwards the complete URL path
@@ -75,7 +76,7 @@ app.use(
 app.use(
   "/api/v1/payment",
   createProxyMiddleware({
-    target: `http://localhost:3010/api/v1/payment`, // Target microservice URL
+    target: `http://${target}:3010/api/v1/payment`, // Target microservice URL
     changeOrigin: true, // Ensures the correct origin is set
     // router: (req) => {
     //   return `http://localhost:3000/api/v1/auth`; // This forwards the complete URL path
@@ -86,7 +87,7 @@ app.use(
 app.use(
   "/api/v1/appointments",
   createProxyMiddleware({
-    target: `http://localhost:3007/api/v1/appointments`, // Target microservice URL
+    target: `http://${target}:3007/api/v1/appointments`, // Target microservice URL
     changeOrigin: true, // Ensures the correct origin is set
     // router: (req) => {
     //   return `http://localhost:3000/api/v1/auth`; // This forwards the complete URL path
@@ -110,7 +111,7 @@ app.listen(PORT, () => {
     }
     if (ipAddress) break;
   }
- 
+  
   console.log(`API Gateway is running on http://localhost:${PORT}`);
   if (ipAddress) {
     console.log(`API Gateway is also accessible at http://${ipAddress}:${PORT}`);
